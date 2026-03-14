@@ -1,32 +1,29 @@
-import type { SSTConfig } from "sst";
-import { StaticSite } from "sst/constructs";
+/// <reference path="./.sst/platform/config.d.ts" />
 
-export default {
-  config(_input) {
+export default $config({
+  app(input) {
     return {
       name: "carloscamacho-cc",
-      region: "us-east-1",
+      removal: input?.stage === "production" ? "retain" : "remove",
+      home: "aws",
     };
   },
-  stacks(app) {
-    app.stack(function Site({ stack }) {
-      const site = new StaticSite(stack, "site", {
-        path: ".",
-        buildOutput: "dist",
-        buildCommand: "npm run build",
-        errorPage: "redirect_to_index_page",
-        customDomain:
-          stack.stage === "production"
-            ? {
-                domainName: "carloscamacho.cc",
-                domainAlias: "www.carloscamacho.cc",
-              }
-            : undefined,
-      });
-
-      stack.addOutputs({
-        SiteUrl: site.url,
-      });
+  async run() {
+    const site = new sst.aws.StaticSite("site", {
+      build: {
+        command: "bun run build",
+        output: "dist",
+      },
+      errorPage: "redirect_to_index_page",
+      domain:
+        $app.stage === "production"
+          ? {
+              name: "carloscamacho.cc",
+              aliases: ["www.carloscamacho.cc"],
+            }
+          : undefined,
     });
+
+    return { url: site.url };
   },
-} satisfies SSTConfig;
+});

@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "lint": "biome check .",
     "format": "biome format --write .",
-    "deploy": "npx sst deploy --stage production"
+    "deploy": "bunx sst deploy --stage production"
   },
   "dependencies": {
     "@tanstack/react-router": "^1",
@@ -25,10 +25,8 @@
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^4",
     "autoprefixer": "^10.4.19",
-    "aws-cdk-lib": "2.132.1",
-    "constructs": "10.3.0",
     "postcss": "^8",
-    "sst": "^2.41.5",
+    "sst": "4.3.1",
     "tailwindcss": "^3.4.1",
     "typescript": "^5",
     "vite": "^6"
