@@ -2,31 +2,35 @@
   "name": "carloscamacho-cc",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "sst bind next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "lint": "biome check .",
+    "format": "biome format --write .",
     "deploy": "npx sst deploy --stage production"
   },
   "dependencies": {
+    "@tanstack/react-router": "^1",
     "classix": "^2.1.37",
-    "next": "14.2.3",
-    "react": "^18",
-    "react-dom": "^18"
+    "react": "^19",
+    "react-dom": "^19"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@biomejs/biome": "^1",
+    "@tanstack/router-plugin": "^1",
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^4",
     "autoprefixer": "^10.4.19",
     "aws-cdk-lib": "2.132.1",
     "constructs": "10.3.0",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.3",
     "postcss": "^8",
     "sst": "^2.41.5",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vite": "^6"
   }
 }

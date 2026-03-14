@@ -1,6 +1,6 @@
 Homepage for [carloscamacho.cc](https://carloscamacho.cc/).
 
-Built with SST V2, Next.js and Tailwind CSS, serverless hosted in AWS.
+Built with SST, Vite and Tailwind CSS.
 
 ## Getting Started
 

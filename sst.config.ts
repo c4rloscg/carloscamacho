@@ -1,7 +1,5 @@
-import { CachePolicy } from "aws-cdk-lib/aws-cloudfront";
-import { Duration } from "aws-cdk-lib/core";
-import { SSTConfig } from "sst";
-import { NextjsSite } from "sst/constructs";
+import type { SSTConfig } from "sst";
+import { StaticSite } from "sst/constructs";
 
 export default {
   config(_input) {
@@ -12,7 +10,11 @@ export default {
   },
   stacks(app) {
     app.stack(function Site({ stack }) {
-      const site = new NextjsSite(stack, "site", {
+      const site = new StaticSite(stack, "site", {
+        path: ".",
+        buildOutput: "dist",
+        buildCommand: "npm run build",
+        errorPage: "redirect_to_index_page",
         customDomain:
           stack.stage === "production"
             ? {
@@ -20,17 +22,6 @@ export default {
                 domainAlias: "www.carloscamacho.cc",
               }
             : undefined,
-        cdk: {
-          serverCachePolicy: new CachePolicy(
-            stack,
-            "CarlosCamachoCC-DynamicServerCache",
-            {
-              defaultTtl: Duration.days(7),
-              maxTtl: Duration.days(7),
-              minTtl: Duration.days(7),
-            }
-          ),
-        },
       });
 
       stack.addOutputs({
