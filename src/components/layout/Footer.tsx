@@ -20,19 +20,7 @@ const Footer: FC = () => {
         ))}
       </div>
       <div className="text-center text-xs">
-        © {currentYear} — Built with{" "}
-        <a href="https://react.dev/" target="_blank" rel="noreferrer">
-          React
-        </a>
-        ,{" "}
-        <a href="https://tailwindcss.com/" target="_blank" rel="noreferrer">
-          Tailwind CSS
-        </a>{" "}
-        and{" "}
-        <a href="https://sst.dev/" target="_blank" rel="noreferrer">
-          sst
-        </a>
-        .
+        © {currentYear}
       </div>
     </div>
   );

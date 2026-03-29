@@ -29,7 +29,6 @@
     "ignore": [
       "dist",
       "node_modules",
-      ".sst",
       ".claude",
       "src/routeTree.gen.ts"
     ]
